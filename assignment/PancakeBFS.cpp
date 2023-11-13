@@ -18,6 +18,8 @@ bool isSorted(const vector<int>& pancakes) {
 
 
 int main() {
+
+    std::map<vector<int>, int> visited;
     vector<int> pancakes = {3, 2,1,5,0};
     vector<int> original=pancakes;
 
@@ -53,9 +55,16 @@ int main() {
             vector<int> flippedStack = currentState.first;
             flip(flippedStack, i);
             vector<int> flips = currentState.second;
+
+            if(!visited[flippedStack])
+            {
             flips.push_back(i);
 
             q.push({flippedStack, flips});
+            visited[flippedStack]=1;
+            }
+
+
         }
     }
 
